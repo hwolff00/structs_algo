@@ -48,6 +48,25 @@ class LinkedList:
                 node = node.next_node
             node.next_node = new_node
 
+    def del_head(self):
+        if not self.head:
+            print("List is already empty.")
+        else:
+            self.head = self.head.next_node
+
+    def del_tail(self):
+        if not self.head:
+            print("List is already empty.")
+        elif not self.head.next_node:
+            self.head = None
+        else:
+            node = self.head
+            next = self.head.next_node
+            while next.next_node is not None:
+                node = next
+                next = next.next_node
+            node.next_node = None
+
 
 if __name__ == "__main__":
     linked = LinkedList()
@@ -60,3 +79,9 @@ if __name__ == "__main__":
     new.add_end(19)
     print(new)
     print(linked)
+    linked.del_head()
+    print(linked)
+    linked.del_tail()
+    print(linked)
+    linked.del_tail()
+    linked.del_tail()
