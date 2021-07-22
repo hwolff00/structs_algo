@@ -1,5 +1,5 @@
 """Basic Binary Search Tree."""
-# insert, traversal (three ways), removal
+# insert, traverse (three ways), search, remove
 
 
 class Node:
@@ -74,6 +74,20 @@ class BST:
             self.traverse_post_order(node.right_child)
         print(node.data)
 
+    def search_bst(self, data):
+        if not self.root:
+            return "Tree is empty."
+        node = self.root
+        while True:
+            if data == node.data:
+                return "Node in tree!"
+            elif data < node.data and node.left_child:
+                node = node.left_child
+            elif data > node.data and node.right_child:
+                node = node.right_child
+            else:
+                return "Node not in tree."
+
 
 if __name__ == "__main__":
     tree = BST()
@@ -85,4 +99,8 @@ if __name__ == "__main__":
     tree.insert(13)
     tree.insert(2)
     # tree.in_order_traversal()
-    tree.post_order_traversal()
+    # tree.post_order_traversal()
+    print(tree.search_bst(4))
+    print(tree.search_bst(13))
+    print(tree.search_bst(6))
+    print(tree.search_bst(20))
