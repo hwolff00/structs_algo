@@ -17,7 +17,7 @@ class LinkedList:
     def __str__(self):
         lst = []
         if not self.head:
-            return f'[]'
+            return '[]'
         else:
             node = self.head
             while node.next_node is not None:
