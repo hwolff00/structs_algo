@@ -52,20 +52,26 @@ class LinkedList:
         if not self.head:
             print("List is already empty.")
         else:
+            self.num_nodes -= 1
             self.head = self.head.next_node
 
     def del_tail(self):
         if not self.head:
             print("List is already empty.")
         elif not self.head.next_node:
+            self.num_nodes -= 1
             self.head = None
         else:
+            self.num_nodes -= 1
             node = self.head
             next = self.head.next_node
             while next.next_node is not None:
                 node = next
                 next = next.next_node
             node.next_node = None
+
+    def list_size(self):
+        return self.num_nodes
 
 
 if __name__ == "__main__":
@@ -85,3 +91,5 @@ if __name__ == "__main__":
     print(linked)
     linked.del_tail()
     linked.del_tail()
+    linked.add_end(1)
+    print(linked.list_size())
