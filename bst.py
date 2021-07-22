@@ -34,10 +34,55 @@ class BST:
                 print(f"{node.right_child.data}: right child of {node.data}.")
             else:
                 self.insert_node(data, node.right_child)
-# base case = if lower, no left leaf. if higher, no right leaf
+
+    def in_order_traversal(self):
+        """Prints out bst values in sorted order."""
+        if not self.root:
+            return "Tree is empty."
+        self.traverse_in_order(self.root)
+
+    def traverse_in_order(self, node):
+        if node.left_child:
+            self.traverse_in_order(node.left_child)
+        print(node.data)
+        if node.right_child:
+            self.traverse_in_order(node.right_child)
+
+    def pre_order_traversal(self):
+        """Helpful for copying the bst tree:
+        (ie if add these to new bst, it will be an identical copy)."""
+        if not self.root:
+            return "Tree is empty."
+        self.traverse_pre_order(self.root)
+
+    def traverse_pre_order(self, node):
+        if node:
+            print(node.data)
+            self.traverse_pre_order(node.left_child)
+            self.traverse_pre_order(node.right_child)
+
+    def post_order_traversal(self):
+        """Helpful for deleting all nodes from tree."""
+        if not self.root:
+            return "Tree is empty."
+        self.traverse_post_order(self.root)
+
+    def traverse_post_order(self, node):
+        if node.left_child:
+            self.traverse_post_order(node.left_child)
+        if node.right_child:
+            self.traverse_post_order(node.right_child)
+        print(node.data)
 
 
 if __name__ == "__main__":
     tree = BST()
     print(tree.insert(6))
     tree.insert(4)
+    tree.insert(9)
+    tree.insert(5)
+    tree.insert(12)
+    tree.insert(13)
+    tree.insert(2)
+    # tree.in_order_traversal()
+    tree.post_order_traversal()
