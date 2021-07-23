@@ -64,6 +64,7 @@ class ListMinHeap:
         self.heap = [0] * capacity
 
     def insert(self, value):
+        # O(logN)
         if self.heap_size == capacity:
             return "Heap is full."
         self.heap[self.heap_size] = value
@@ -72,6 +73,7 @@ class ListMinHeap:
         self.heapify_up(self.heap_size - 1)
 
     def heapify_up(self, index):
+        # O(logN)
         # idx * 2 + 1 = left_child
         # idx * 2 + 2 = right_child
         # (idx - 1) // 2 = parent (remainder guarentees parent)
@@ -81,6 +83,7 @@ class ListMinHeap:
             self.heapify_up(parent_index)
 
     def heapify_down(self, index):
+        # O(logN)
         left_index = index * 2 + 1
         right_index = index * 2 + 2
         smallest_index = index
@@ -93,10 +96,12 @@ class ListMinHeap:
             self.heapify_down(smallest_index)
 
     def get_min(self):
+        # O(1)
         return self.heap[0]
 
     def pull(self):
         "Return and remove min value."
+        # O(logN)
         min_item = self.get_min()
         self.heap[0], self.heap[self.heap_size - 1] = self.heap[self.heap_size - 1], self.heap[0]
         self.heap_size -= 1
@@ -104,6 +109,8 @@ class ListMinHeap:
         return min_item
 
     def heap_sort(self):
+        # linearithmic run time O(NlogN)
+        # (linear traversal of all items + logarithmic look up)
         for _ in range(self.heap_size):
             min_item = self.pull()
             print(min_item)
@@ -114,35 +121,3 @@ if __name__ == "__main__":
     for num in [5, 2, 12, 4, 16, 1]:
         maximum.insert(num)
     maximum.heap_sort()
-
-
-
-
-# class Node:
-#     def __init__(self, data):
-#         self.data = data
-#         self.parent = None
-#         self.right_child = None
-#         self.left_child = None
-#
-#
-# class Min_Heap:
-#     "Parent nodes are always <= their children."
-#     def __init__(self):
-#         self.root = None
-#
-#     def insert(self, data):
-#         if not self.root:
-#             self.root = Node(data)
-#
-#
-#
-#
-# class Max_Heap:
-#     "Parent nodes are always >= their children."
-#     def __init__(self):
-#         self.root = None
-#
-#     def insert(self, data):
-#         if not self.root:
-#             self.root = Node(data)
