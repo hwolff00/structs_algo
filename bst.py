@@ -15,6 +15,7 @@ class BST:
         self.root = None
 
     def insert(self, data):
+        # O(logN)
         if not self.root:
             self.root = Node(data, None)
             return self.root.data
@@ -22,6 +23,7 @@ class BST:
             self.insert_node(data, self.root)
 
     def insert_node(self, data, node):
+        # O(logN)
         if data < node.data:
             if not node.left_child:
                 node.left_child = Node(data, node)
@@ -36,12 +38,14 @@ class BST:
                 self.insert_node(data, node.right_child)
 
     def in_order_traversal(self):
+        # O(N)
         """Prints out bst values in sorted order."""
         if not self.root:
             return "Tree is empty."
         self.traverse_in_order(self.root)
 
     def traverse_in_order(self, node):
+        # O(N)
         if node.left_child:
             self.traverse_in_order(node.left_child)
         print(node.data)
@@ -51,11 +55,13 @@ class BST:
     def pre_order_traversal(self):
         """Helpful for copying the bst tree:
         (ie if add these to new bst, it will be an identical copy)."""
+        # O(N)
         if not self.root:
             return "Tree is empty."
         self.traverse_pre_order(self.root)
 
     def traverse_pre_order(self, node):
+        # O(N)
         if node:
             print(node.data)
             self.traverse_pre_order(node.left_child)
@@ -63,11 +69,13 @@ class BST:
 
     def post_order_traversal(self):
         """Helpful for deleting all nodes from tree."""
+        # O(N)
         if not self.root:
             return "Tree is empty."
         self.traverse_post_order(self.root)
 
     def traverse_post_order(self, node):
+        # O(N)
         if node.left_child:
             self.traverse_post_order(node.left_child)
         if node.right_child:
@@ -75,6 +83,7 @@ class BST:
         print(node.data)
 
     def search_bst(self, data):
+        # O(logN)
         if not self.root:
             return "Tree is empty."
         node = self.root
@@ -89,17 +98,20 @@ class BST:
                 return "Node not in tree."
 
     def remove(self, data):
+        # O(logN)
         if not self.root:
             return "Tree is empty."
         node = self.root
         self.remove_node(data, node)
 
     def get_predecessor(self, node):
+        # O(logN)
         if node.right_child:
             return self.get_predecessor(node.right_child)
         return node
 
     def remove_node(self, data, node):
+        # O(logN)
         if node is None:
             print(f"Node {data} not in tree")
             return
@@ -144,12 +156,8 @@ class BST:
 if __name__ == "__main__":
     tree = BST()
     print(tree.insert(6))
-    tree.insert(4)
-    tree.insert(9)
-    tree.insert(5)
-    tree.insert(12)
-    tree.insert(13)
-    tree.insert(2)
+    for num in [4, 9, 5, 12, 13, 2]:
+        tree.insert(num)
     tree.in_order_traversal()
     # tree.post_order_traversal()
     tree.remove(4)

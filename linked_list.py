@@ -27,6 +27,7 @@ class LinkedList:
         return f'[{", ".join(lst)}]'
 
     def add_start(self, data):
+        # O(1)
         self.num_nodes += 1
         new_node = Node(data)
 
@@ -37,6 +38,7 @@ class LinkedList:
             self.head = new_node
 
     def add_end(self, data):
+        # O(n)
         self.num_nodes += 1
         new_node = Node(data)
         node = self.head
@@ -49,6 +51,7 @@ class LinkedList:
             node.next_node = new_node
 
     def del_head(self):
+        # O(1)
         if not self.head:
             print("List is already empty.")
         else:
@@ -56,6 +59,7 @@ class LinkedList:
             self.head = self.head.next_node
 
     def del_tail(self):
+        # O(n)
         if not self.head:
             print("List is already empty.")
         elif not self.head.next_node:
@@ -71,6 +75,7 @@ class LinkedList:
             node.next_node = None
 
     def list_size(self):
+        # O(1)
         return self.num_nodes
 
 
