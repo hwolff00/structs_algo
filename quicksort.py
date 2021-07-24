@@ -8,7 +8,7 @@ class QuickSort:
         self.items = items
 
     def sort(self):
-        self.quick_sort(0, len(self.items)-1)
+        self.quick_sort(0, len(self.items)-1)  # Range of values
         return self.items
 
     def quick_sort(self, low, high):
