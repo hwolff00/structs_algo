@@ -29,7 +29,23 @@ class QuickSort:
         self.items[low], self.items[high] = self.items[high], self.items[low]
         return low
 
+# Alternatively
+
+
+def quicksort(arr: list) -> list:
+    if len(arr) < 2:
+        return arr
+    else:
+        pivot = arr[0]
+        left = [num for num in arr[1:] if num < pivot]
+        right = [num for num in arr[1:] if num > pivot]
+        pivot = [pivot]  # Must convert back to list to concat later
+        return quicksort(left) + pivot + quicksort(right)
+    return arr
+
 
 if __name__ == "__main__":
     q = QuickSort([1, 5, 6, 9, 3, 10, 7, 543])
     print(q.sort())
+    print(quicksort([0, 5, 4, 3, 2, 6]))
+    print(quicksort([10, 5, 44, 223, 2, 56]))
